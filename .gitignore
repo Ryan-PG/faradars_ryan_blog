@@ -32,6 +32,8 @@ MANIFEST
 
 /static
 
+models_schemas.txt
+
 
 *.manifest
 *.spec
