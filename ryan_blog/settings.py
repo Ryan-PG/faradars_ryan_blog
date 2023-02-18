@@ -77,8 +77,11 @@ WSGI_APPLICATION = 'ryan_blog.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'ryanblog_DB',
+        'USER': 'postgres', 
+        'PASSWORD': 'hello', 
+        'HOST': 'localhost'
     }
 }
 
