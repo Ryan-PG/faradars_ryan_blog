@@ -8,6 +8,7 @@ class PostAdmin(admin.ModelAdmin):
   list_editable = ['is_published']
   list_filter = ['blogger']
   search_fields = ['title', 'text', 'blogger__name']
+  readonly_fields = ['comments_count', 'likes_count']
   list_per_page = 20
 
 admin.site.register(Post, PostAdmin)
