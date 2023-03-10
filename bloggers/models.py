@@ -1,7 +1,9 @@
 from django.db import models
 from datetime import datetime
+from django.contrib.auth.models import User
 
 class Blogger(models.Model):
+  user = models.OneToOneField(User, on_delete=models.DO_NOTHING)
   name = models.CharField(max_length=200)
   photo = models.ImageField(upload_to='photos/bloggers/%Y/%m/%d/')
   birth_date = models.DateField(default=datetime.now, blank=True)
