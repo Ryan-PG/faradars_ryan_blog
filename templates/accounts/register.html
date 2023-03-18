@@ -10,7 +10,10 @@
             <h4>ثبت نام</h4>
           </div>
           <div class="card-body">
-            <form action="index.html">
+            <!-- Alserts -->
+            {% include 'partials/_alerts.html' %}
+            <form action="{% url 'register' %}" method="POST">
+              {% csrf_token %}
               <div class="form-group">
                 <label for="first_name">نام</label>
                 <input type="text" name="first_name" class="form-control" required />
