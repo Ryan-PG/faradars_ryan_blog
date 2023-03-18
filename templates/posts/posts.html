@@ -1,5 +1,7 @@
 {% extends 'base.html' %}
 
+{% load humanize %}
+
 {% block content %}
 
 <!-- Breadcrumb -->
@@ -23,68 +25,42 @@
     <div class="container">
       <h3 class="text-center mb-3">همه‌ی پست ها</h3>
       <div class="row">
-        <!-- Listing 1 -->
-        <div class="col-md-6 col-lg-4 mb-4">
-          <div class="card listing-preview">
-            <div style="position: relative">
-              <img class="card-img-top" src="assets/img/pictures/pic-1.jpg" alt="" />
-              <div class="text-image-config p-1">
-                <span class="badge text-white" style="background-color: #cb1c8d">268 <i
-                    class="fas fa-comment"></i></span>
-                <span class="badge text-white mr-2" style="background-color: #e0144c">268 <i
-                    class="fas fa-heart"></i></span>
+
+        {% if posts %}
+          {% for post in posts %}
+            <div class="col-md-6 col-lg-4 mb-4">
+              <div class="card listing-preview">
+                <div style="position: relative">
+                  <img class="card-img-top" src="{{ post.photo_main.url }}" alt="" />
+                  <div class="text-image-config p-1">
+                    <span class="badge text-white" style="background-color: #cb1c8d">{{ post.comments_count | intcomma }} <i
+                        class="fas fa-comment"></i></span>
+                    <span class="badge text-white mr-2" style="background-color: #e0144c">{{ post.likes_count | intcomma}} <i
+                        class="fas fa-heart"></i></span>
+                  </div>
+                </div>
+                <div class="card-body" style="font-size: 13px; padding-bottom: 0">
+                  <div class="listing-heading text-right">
+                    <h4 class="text-primary"> {{ post.title }} </h4>
+                    <p><i class="fas fa-pen" style="color: #e0144c"></i> {{ post.blogger }}</p>
+                  </div>
+                  <hr />
+                  <div class="multiline-ellipsis text-right">
+                    {{ post.text }}
+                  </div>
+                </div>
+                <hr />
+                <div class="px-3 pb-3 pt-0" style="padding-top: 0">
+                  <a href="{% url 'post' post.id %}" class="btn btn-primary btn-block">بیشتر...</a>
+                </div>
               </div>
             </div>
-            <!-- <div class="card-body text-truncate" style="display: -webkit-box !important; -webkit-line-clamp: 4; -webkit-box-orient: vertical; white-space: normal"> -->
-            <div class="card-body" style="font-size: 13px; padding-bottom: 0">
-              <div class="listing-heading text-right">
-                <h4 class="text-primary">عنوان توضیح</h4>
-                <p><i class="fas fa-pen" style="color: #e0144c"></i> نویسنده</p>
-              </div>
-              <hr />
-              <div class="multiline-ellipsis text-right">
-                شتیسکنمبتشکنمیسبت کشتشسیب تیسبش کمنشیت بیشکمس بیش سیبشتتنیبشس شبینکست کیشبست یبشمکست یبشکمت کشمیب
-                کنمشیبس شیبت بشیکنمت شبیسکمنتشبی مکنتشبی مکنشیبست مکنشیست شیمسکت یشبسمنت شیبسکنمتش
-                بیسکمنتشبیس کمشنبی تکمشنبست شبکیمت شبیمست شکبیسنت شبیکمنت شبیکمنشب س
-              </div>
-            </div>
-            <hr />
-            <div class="px-3 pb-3 pt-0" style="padding-top: 0">
-              <a href="post-detail.html" class="btn btn-primary btn-block">بیشتر...</a>
-            </div>
-          </div>
-        </div>
-        <!-- 2 -->
-        <div class="col-md-6 col-lg-4 mb-4">
-          <div class="card listing-preview">
-            <div style="position: relative">
-              <img class="card-img-top" src="assets/img/pictures/pic-1.jpg" alt="" />
-              <div class="text-image-config p-1">
-                <span class="badge text-white" style="background-color: #cb1c8d">268 <i
-                    class="fas fa-comment"></i></span>
-                <span class="badge text-white mr-2" style="background-color: #e0144c">268 <i
-                    class="fas fa-heart"></i></span>
-              </div>
-            </div>
-            <!-- <div class="card-body text-truncate" style="display: -webkit-box !important; -webkit-line-clamp: 4; -webkit-box-orient: vertical; white-space: normal"> -->
-            <div class="card-body" style="font-size: 13px; padding-bottom: 0">
-              <div class="listing-heading text-right">
-                <h4 class="text-primary">عنوان توضیح</h4>
-                <p><i class="fas fa-pen" style="color: #e0144c"></i> نویسنده</p>
-              </div>
-              <hr />
-              <div class="multiline-ellipsis text-right">
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Sequi iure tempore facere ut nam laudantium
-                maxime, perspiciatis sit quam voluptas harum atque aliquid voluptatem esse? Ea
-                distinctio molestias aliquam sit.
-              </div>
-            </div>
-            <hr />
-            <div class="px-3 pb-3 pt-0" style="padding-top: 0">
-              <a href="post-detail.html" class="btn btn-primary btn-block">بیشتر...</a>
-            </div>
-          </div>
-        </div>
+          {% endfor %}
+        {% else %}
+          <div class="col-md-12">هیچ پستی وجود ندارد.</div>
+        {% endif %}
+        
+        
       </div>
 
       <!-- Pagination -->
