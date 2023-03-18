@@ -4,7 +4,7 @@ from django.core.paginator import Paginator
 from .models import Post
 
 def index(request):
-  posts_list = Post.objects.all()
+  posts_list = Post.objects.order_by('-post_date').filter(is_published = True)
 
   paginator = Paginator(posts_list, 3)
   page = request.GET.get('page')
