@@ -7,18 +7,18 @@
     <nav>
       <ol class="breadcrumb">
         <li class="breadcrumb-item">
-          <a href="index.html">خانه</a>
+          <a href="{% url 'index' %}">خانه</a>
         </li>
         <li class="breadcrumb-item">
-          <a href="index.html">پست ها</a>
+          <a href="{% url 'posts' %}">پست ها</a>
         </li>
-        <li class="breadcrumb-item active"> این پست</li>
+        <li class="breadcrumb-item active"> {{post.title}}</li>
       </ol>
     </nav>
   </div>
 </section>
 <section>
-  <h2 class="text-center">موضوع پست</h2>
+  <h2 class="text-center">{{post.title}}</h2>
 </section>
 
 <!-- Listing -->
@@ -27,39 +27,51 @@
     <div class="row">
       <div class="col-md-12">
         <!-- Home Main Image -->
-        <img src="assets/img/pictures/pic-1.jpg" alt="" class="img-main img-fluid mb-3" />
+        <img src="{{ post.photo_main.url }}" alt="" class="img-main img-fluid mb-3" />
         <!-- Thumbnails -->
         <div class="row mb-5 thumbs">
+          {% if post.photo_1 %}
           <div class="col-md-2">
-            <a href="assets/img/pictures/pic-2.jpg" data-lightbox="home-images">
-              <img src="assets/img/pictures/pic-2.jpg" alt="" class="img-fluid" />
+            <a href="{{ post.photo_1.url }}" data-lightbox="home-images">
+              <img src="{{ post.photo_1.url }}" alt="" class="img-fluid" />
             </a>
           </div>
+          {% endif %}
+          {% if post.photo_2 %}
           <div class="col-md-2">
-            <a href="assets/img/pictures/pic-3.jpg" data-lightbox="home-images">
-              <img src="assets/img/pictures/pic-3.jpg" alt="" class="img-fluid" />
+            <a href="{{ post.photo_2.url }}" data-lightbox="home-images">
+              <img src="{{ post.photo_2.url }}" alt="" class="img-fluid" />
             </a>
           </div>
+          {% endif %}
+          {% if post.photo_3 %}
           <div class="col-md-2">
-            <a href="assets/img/pictures/pic-4.jpg" data-lightbox="home-images">
-              <img src="assets/img/pictures/pic-4.jpg" alt="" class="img-fluid" />
+            <a href="{{ post.photo_3.url }}" data-lightbox="home-images">
+              <img src="{{ post.photo_3.url }}" alt="" class="img-fluid" />
             </a>
           </div>
+          {% endif %}
+          {% if post.photo_4 %}
           <div class="col-md-2">
-            <a href="assets/img/pictures/pic-5.jpg" data-lightbox="home-images">
-              <img src="assets/img/pictures/pic-5.jpg" alt="" class="img-fluid" />
+            <a href="{{ post.photo_4.url }}" data-lightbox="home-images">
+              <img src="{{ post.photo_4.url }}" alt="" class="img-fluid" />
             </a>
           </div>
+          {% endif %}
+          {% if post.photo_5 %}
           <div class="col-md-2">
-            <a href="assets/img/pictures/pic-6.jpg" data-lightbox="home-images">
-              <img src="assets/img/pictures/pic-6.jpg" alt="" class="img-fluid" />
+            <a href="{{ post.photo_5.url }}" data-lightbox="home-images">
+              <img src="{{ post.photo_5.url }}" alt="" class="img-fluid" />
             </a>
           </div>
+          {% endif %}
+          {% if post.photo_6 %}
           <div class="col-md-2">
-            <a href="assets/img/pictures/pic-7.jpg" data-lightbox="home-images">
-              <img src="assets/img/pictures/pic-7.jpg" alt="" class="img-fluid" />
+            <a href="{{ post.photo_6.url }}" data-lightbox="home-images">
+              <img src="{{ post.photo_6.url }}" alt="" class="img-fluid" />
             </a>
           </div>
+          {% endif %}
         </div>
         <!-- Fields -->
         <div class="row mb-5 fields">
@@ -68,12 +80,12 @@
               <li class="list-group-item text-secondary">
                 <i class="fas fa-user"></i>
                 نویسنده:
-                <span>اینجانب</span>
+                <span>{{post.blogger}}</span>
               </li>
               <li class="list-group-item text-secondary">
                 <i class="fas fa-calendar"></i>
                 تاریخ:
-                <span>اینجانب</span>
+                <span>{{post.post_date}}</span>
               </li>
             </ul>
           </div>
@@ -81,11 +93,11 @@
             <ul class="list-group list-group-flush">
               <li class="list-group-item text-secondary">
                 <i class="fas fa-thumbs-up"></i>
-                <span>45</span>
+                <span>{{post.likes_count}}</span>
               </li>
               <li class="list-group-item text-secondary">
                 <i class="fas fa-comments"></i>
-                <span>85</span>
+                <span>{{post.comments_count}}</span>
               </li>
             </ul>
           </div>
@@ -95,15 +107,7 @@
         <div class="row mb-5">
           <div class="col-md-12">
             <p style="font-size: 20px;">
-              یکی از کارهای روزمره ی من نوشتن است، گاهی برای وبلاگم و گاهی هم مجبورم برای بخش های مختلف شرکت متن دستورالعمل کارکنان یا راهنمای بخشی از نرم افزار را بنویسم. در این مطلب که قبلا خودش یک دستورالعمل بوده برای راهنما نوشتن سعی کرده ام 7 قانونی که سعی می کنم در نوشتن مطلب رعایت کنم را لیست کنم.
-
-              1-عنوان مطلب مهمترین بخش مطلب است!
-              
-              کاربرها اول عنوان را می خوانند و اگر از آن خوششان آمد ادامه ی مطلب را می خوانند. عنوان نباید کلی باشد یا با خواندن آن نفهمیم مطلب در چه رابطه ای است، یا اغراق آمیز باشد
-              
-              حتی خیلی از کاربرها فقط چند کلمه ی اول عنوان را می خوانند.
-              
-              گوگل هم به عنوان، اهمیت خیلی زیادی می دهد. و هر چقدر کلمه ی کلیدی شما برای سئو به ابتدای سطر نزدیک تر باشد امتیاز بیشتری می دهد.
+              {{post.text}}
             </p>
           </div>
         </div>
