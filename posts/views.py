@@ -1,11 +1,17 @@
 from django.shortcuts import render
+from django.core.paginator import Paginator
+
 from .models import Post
 
 def index(request):
   posts_list = Post.objects.all()
 
+  paginator = Paginator(posts_list, 3)
+  page = request.GET.get('page')
+  paged_posts_list = paginator.get_page(page)
+
   context = {
-    'posts': posts_list
+    'posts': paged_posts_list
   }
   
   return render(request, 'posts/posts.html', context)
