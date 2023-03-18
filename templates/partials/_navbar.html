@@ -51,14 +51,46 @@
           </div>
         </form>
       </div>
-      <ul class="navbar-nav mr-auto">
-        <li class="nav-item mr-3">
-          <a class="nav-link" href="{% url 'register' %}"><i class="fas fa-user-plus"></i> ثبت نام </a>
-        </li>
-        <li class="nav-item mr-3">
-          <a class="nav-link" href="{% url 'login' %}"><i class="fas fa-sign-in-alt"></i> ورود </a>
-        </li>
-      </ul>
+
+
+      {% if user.is_authenticated %}
+        <ul class="navbar-nav mr-auto">
+          <li class="nav-item active mr-3">
+            <a class="nav-link">{{user.username}}</a>
+          </li>
+          <li class="nav-item active mr-3">
+            <a href="javascript:{document.getElementById('logout').submit()}" class="nav-link"><i class="fas fa-sign-out-alt"> خروج</i></a>
+            <form action="{% url 'logout' %}" id="logout" method="POST">
+              {% csrf_token %}
+              <input type="hidden">
+            </form>
+          </li>
+        </ul>
+      {% else %}
+        <ul class="navbar-nav mr-auto">
+          <li 
+            {% if 'register' in request.path %}
+              class="nav-item active mr-3"
+            {% else %}
+              class="nav-item mr-3"
+            {% endif %}
+          >
+            <a class="nav-link" href="{% url 'register' %}"><i class="fas fa-user-plus"></i> ثبت نام </a>
+          </li>
+          <li 
+            {% if 'login' in request.path %}
+              class="nav-item active mr-3"
+            {% else %}
+              class="nav-item mr-3"
+            {% endif %}
+          >
+            <a class="nav-link" href="{% url 'login' %}"><i class="fas fa-sign-in-alt"></i> ورود </a>
+          </li>
+        </ul>
+      {% endif %}
+
+
+      
     </div>
   </div>
 </header>
