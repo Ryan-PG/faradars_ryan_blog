@@ -5,6 +5,7 @@ This Django project is a tutorial for building a Blog website with CRUD function
 
 ## Table of Contents
 
+- [Images](#Images)
 - [Introduction](#introduction)
 - [Features](#features)
 - [Requirements](#requirements)
@@ -14,6 +15,12 @@ This Django project is a tutorial for building a Blog website with CRUD function
 - [Contributing](#contributing)
 - [License](#license)
 - [Faradars Tutorial Link](#faradars-tutorial-link)
+
+## Images
+![HomePage Image](HomePage.png) 
+![AboutPage Image](AboutPage.png)
+![DetailPage Image](DetailPage.png)
+![AdminPage Image](AdminPage.png)
 
 ## Introduction
 
