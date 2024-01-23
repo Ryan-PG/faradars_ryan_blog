@@ -96,7 +96,7 @@
           <div class="col-md-6">
             <ul class="list-group list-group-flush">
               <li class="list-group-item text-secondary">
-                <a href="{% url 'like_post' post_id=post.id %}" class="btn btn-link">
+                <a href="{% url 'like_post' post_id=post.id %}" class="text-secondary">
                 <i class="fas fa-thumbs-up"></i>
                 </a>
                 <span>{{post.likes_count}}
@@ -118,6 +118,28 @@
             </p>
           </div>
         </div>
+        <!-- Comments Section -->
+        <section id="comments" class="mb-5">
+          <h3>کامنت ها</h3>
+          <ul class="list-group">
+              {% for comment in comments %}
+                  <li class="list-group-item">
+                      <strong>{{ comment.user_name }}</strong>
+                      <span class="text-muted"> در {{ comment.comment_date }}</span>
+                      <p>{{ comment.comment_text }}</p>
+                  </li>
+              {% endfor %}
+          </ul>
+        </br>
+
+          <!-- Comment Form -->
+          <form method="post" action="{% url 'post' post_id=post.id %}#comments">
+              {% csrf_token %}
+              {{ form.as_p }}
+              <button type="submit" class="btn btn-primary">ارسال کامنت</button>
+          </form>
+        </section>
+
       </div>
     </div>
   </div>
