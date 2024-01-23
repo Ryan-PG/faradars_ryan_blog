@@ -1,4 +1,4 @@
-from django.shortcuts import render, get_object_or_404
+from django.shortcuts import redirect, render, get_object_or_404
 from django.core.paginator import Paginator
 from django.db.models import Q
 
@@ -42,3 +42,21 @@ def search(request):
   }
   
   return render(request, 'posts/search.html', context)
+
+def like_post(request, post_id):
+  if not request.user.is_authenticated:
+    return render(request, 'accounts/authentication_alert.html')
+  
+  post = get_object_or_404(Post, pk=post_id)
+  blogger = request.user.blogger  # Assuming the user is authenticated
+
+  if blogger in post.likers.all():
+    post.likers.remove(blogger)
+    post.likes_count -= 1
+  else:
+    post.likers.add(blogger)
+    post.likes_count += 1
+
+  post.save()
+  
+  return redirect('post', post_id=post_id)

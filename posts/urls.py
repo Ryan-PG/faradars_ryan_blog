@@ -5,5 +5,6 @@ from . import views
 urlpatterns = [
   path('', views.index, name='posts'),     #www.ryan-blogs.com\posts\
   path('<int:post_id>', views.post, name='post'), #www.ryan-blogs.com\posts\<id>
-  path('search', views.search, name='search') #www.ryan-blogs.com\posts\search
+  path('search', views.search, name='search'), #www.ryan-blogs.com\posts\search
+  path('post/<int:post_id>/like/', views.like_post, name='like_post'),
 ]

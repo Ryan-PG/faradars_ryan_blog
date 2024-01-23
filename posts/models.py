@@ -17,6 +17,7 @@ class Post(models.Model):
   photo_4 = models.ImageField(upload_to='photos/%Y/%m/%d/', blank=True)
   photo_5 = models.ImageField(upload_to='photos/%Y/%m/%d/', blank=True)
   photo_6 = models.ImageField(upload_to='photos/%Y/%m/%d/', blank=True)
+  likers = models.ManyToManyField(Blogger, related_name='liked_posts')
 
   def __str__(self) -> str:
     return self.title
